@@ -18,7 +18,12 @@
 
     <name>VIVO Install Web App</name>
 
+    <properties>
+        <app-name>vivo-custom-webapp</app-name>
+    </properties>
+
     <build>
+        <finalName>${app-name}</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
