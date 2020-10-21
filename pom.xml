@@ -1,0 +1,119 @@
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.vivoweb</groupId>
+    <artifactId>vivo-custom-webapp</artifactId>
+    <version>1.11.2-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <parent>
+        <groupId>org.vivoweb</groupId>
+        <artifactId>vivo-project</artifactId>
+        <version>1.11.2-SNAPSHOT</version>
+    </parent>
+
+    <name>VIVO Install Web App</name>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>overlays</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+
+                <configuration>
+                    <skip>false</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>include-home</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.vivoweb</groupId>
+                                    <artifactId>vivo-installer-home</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>tar</type>
+                                    <destFileName>vivo-home.tar</destFileName>
+                                    <outputDirectory>${project.build.directory}/home-files</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                    </archive>
+                    <archiveClasses>false</archiveClasses>
+                    <overlays>
+                        <overlay>
+                            <groupId>org.vivoweb</groupId>
+                            <artifactId>vivo-webapp</artifactId>
+                            <type>war</type>
+                        </overlay>
+                    </overlays>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/webResources</directory>
+                            <filtering>true</filtering>
+                        </resource>
+                        <resource>
+                            <directory>${project.build.directory}/home-files/</directory>
+                            <targetPath>WEB-INF/resources/home-files/</targetPath>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.vivoweb</groupId>
+            <artifactId>vivo-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.vivoweb</groupId>
+            <artifactId>vivo-webapp</artifactId>
+            <type>war</type>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>
