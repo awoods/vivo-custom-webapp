@@ -16,7 +16,7 @@
         <version>1.11.2-SNAPSHOT</version>
     </parent>
 
-    <name>VIVO Install Web App</name>
+    <name>VIVO Custom Web App</name>
 
     <properties>
         <app-name>vivo-custom-webapp</app-name>
