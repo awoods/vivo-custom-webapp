@@ -99,6 +99,8 @@
                         <descriptor>src/main/assembly/home.xml</descriptor>
                     </descriptors>
                     <appendAssemblyId>false</appendAssemblyId>
+                    <outputDirectory>${project.build.directory}/home-files</outputDirectory>
+                    <workDirectory>${project.build.directory}/home-files</workDirectory>
                 </configuration>
                 <executions>
                     <execution>
@@ -135,6 +137,9 @@
                         <resource>
                             <directory>${project.build.directory}/home-files/</directory>
                             <targetPath>WEB-INF/resources/home-files/</targetPath>
+                            <includes>
+                                <include>vivo-home.tar</include>
+                            </includes>
                         </resource>
                     </webResources>
                 </configuration>
