@@ -72,7 +72,6 @@
                 <executions>
                     <execution>
                         <id>overlay-home</id>
-                        <!-- here the phase you need -->
                         <phase>process-resources</phase>
                         <goals>
                         <goal>copy-resources</goal>
