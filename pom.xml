@@ -134,7 +134,7 @@
                         </resource>
                         <resource>
                             <directory>${project.build.directory}/</directory>
-                            <targetPath>WEB-INF/resources/</targetPath>
+                            <targetPath>WEB-INF/resources/home-files/</targetPath>
                             <includes>
                                 <include>vivo-home.tar</include>
                             </includes>
