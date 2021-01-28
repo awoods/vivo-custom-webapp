@@ -36,7 +36,7 @@
                 </configuration>
             </plugin>
 
-            <!-- include and unpacke vivo home tar -->
+            <!-- include and unpack vivo home tar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -99,8 +99,6 @@
                         <descriptor>src/main/assembly/home.xml</descriptor>
                     </descriptors>
                     <appendAssemblyId>false</appendAssemblyId>
-                    <outputDirectory>${project.build.directory}/home-files</outputDirectory>
-                    <workDirectory>${project.build.directory}/home-files</workDirectory>
                 </configuration>
                 <executions>
                     <execution>
@@ -135,8 +133,8 @@
                             <filtering>true</filtering>
                         </resource>
                         <resource>
-                            <directory>${project.build.directory}/home-files/</directory>
-                            <targetPath>WEB-INF/resources/home-files/</targetPath>
+                            <directory>${project.build.directory}/</directory>
+                            <targetPath>WEB-INF/resources/</targetPath>
                             <includes>
                                 <include>vivo-home.tar</include>
                             </includes>

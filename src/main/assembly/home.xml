@@ -17,7 +17,7 @@
     </dependencySets>
     <fileSets>
         <fileSet>
-            <directory>.</directory>
+            <directory>${project.build.directory}/home-files</directory>
             <outputDirectory>.</outputDirectory>
             <filtered>false</filtered>
         </fileSet>
