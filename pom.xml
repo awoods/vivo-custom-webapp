@@ -83,6 +83,9 @@
                             <resource>
                                 <directory>${project.basedir}/home/src/main/resources</directory>
                                 <filtering>false</filtering>
+                                <excludes>
+                                    <exclude>**/.gitkeep</exclude>
+                                </excludes>
                             </resource>
                         </resources>
                         </configuration>
