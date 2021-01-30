@@ -35,10 +35,11 @@
                     </filesets>
                 </configuration>
             </plugin>
+
+            <!-- include and unpack vivo home tar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-
                 <configuration>
                     <skip>false</skip>
                 </configuration>
@@ -47,7 +48,7 @@
                         <id>include-home</id>
                         <phase>process-resources</phase>
                         <goals>
-                            <goal>copy</goal>
+                            <goal>unpack</goal>
                         </goals>
                         <configuration>
                             <artifactItems>
@@ -64,6 +65,54 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- overlay vivo home files -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>overlay-home</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                        <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                        <outputDirectory>${project.build.directory}/home-files</outputDirectory>
+                        <resources>
+                            <resource>
+                                <directory>${project.basedir}/home/src/main/resources</directory>
+                                <filtering>false</filtering>
+                                <excludes>
+                                    <exclude>**/.gitkeep</exclude>
+                                </excludes>
+                            </resource>
+                        </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- package up vivo-home.tar -->
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <finalName>vivo-home</finalName>
+                    <descriptors>
+                        <descriptor>src/main/assembly/home.xml</descriptor>
+                    </descriptors>
+                    <appendAssemblyId>false</appendAssemblyId>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -87,8 +136,11 @@
                             <filtering>true</filtering>
                         </resource>
                         <resource>
-                            <directory>${project.build.directory}/home-files/</directory>
+                            <directory>${project.build.directory}/</directory>
                             <targetPath>WEB-INF/resources/home-files/</targetPath>
+                            <includes>
+                                <include>vivo-home.tar</include>
+                            </includes>
                         </resource>
                     </webResources>
                 </configuration>

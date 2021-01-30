@@ -5,8 +5,15 @@ This project replaces the legacy "VIVO Installer". It is used to create a "third
 ## Usage
 
 1. Clone this repository
-1. Add any overlay files to their expected location with the `src` directory tree
-1. Build the custom webapp
+2. Add any overlay files to their expected location with the `src` directory tree
+3. Add any overlay files to their expected location with the `home` directory tree
+   e.g.
+   ```
+   home/src/main/resources/config/applicationSetup.n3
+   home/src/main/resources/config/runtime.properties
+   home/src/main/resources/rdf/display/firsttime/menu.n3
+   ```
+4. Build the custom webapp
    ```
    mvn clean install -Dapp-name=<my-app> -Dvivo-dir=<path-to-vivo-home>
    ```
