@@ -13,8 +13,14 @@ This project replaces the legacy "VIVO Installer". It is used to create a "third
    home/src/main/resources/config/runtime.properties
    home/src/main/resources/rdf/display/firsttime/menu.n3
    ```
-4. Build the custom webapp
+4. Build base VIVO webapp
    ```
+   cd <location of VIVO source code>
+   mvn clean install
+   ```
+5. Build the custom webapp
+   ```
+   cd <location of custom webapp code>
    mvn clean install -Dapp-name=<my-app> -Dvivo-dir=<path-to-vivo-home>
    ```
    - The provided 'app-name' will be the name of the produced `.war` file (e.g. `my-app.war`) as well as the name of the application log file (`my-app.all.log`).
