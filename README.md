@@ -9,6 +9,7 @@ This project replaces the legacy "VIVO Installer". It is used to create a "third
    e.g.
    ```
    src/main/webapp/themes/custom-theme
+   src/main/webapp/config/listViewConfig-organizationForPosition.xml
    src/main/java/com/wok/vivo/dataservice/MyCustomClass.java
    ```
 3. Add any overlay files to their expected location with the `home` directory tree
@@ -36,6 +37,7 @@ This custom webapp template is intended for use with VIVO version 1.12 and later
    e.g.
    ```
    src/main/webapp/themes/custom-theme
+   src/main/webapp/config/listViewConfig-organizationForPosition.xml
    src/main/java/com/wok/vivo/dataservice/MyCustomClass.java
    ```
 3. Add any overlay files to their expected location with the `home` directory tree
