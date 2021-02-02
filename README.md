@@ -20,7 +20,6 @@ This project replaces the legacy "VIVO Installer". It is used to create a "third
    ```
 4. Build the custom webapp
    ```
-   cd <location of custom webapp code>
    mvn clean install -Dapp-name=<my-app> -Dvivo-dir=<path-to-vivo-home>
    ```
    - The provided 'app-name' will be the name of the produced `.war` file (e.g. `my-app.war`) as well as the name of the application log file (`my-app.all.log`).
